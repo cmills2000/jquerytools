@@ -227,9 +227,11 @@
 			self.seekTo(0, 0, function() {});
 		}
 		
-		// next/prev buttons
-		var prev = find(root, conf.prev).click(function() { self.prev(); }),
-			 next = find(root, conf.next).click(function() { self.next(); });	
+		// next/prev buttons (ajax friendly)
+        var prev = find(root, conf.prev), next = find(root, conf.next);
+
+        root.delegate(conf.prev, 'click', function () { self.prev(); });
+        root.delegate(conf.next, 'click', function () { self.next(); });	
 		
 		if (!conf.circular && self.getSize() > 1) {
 			
